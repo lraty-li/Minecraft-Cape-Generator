@@ -3,48 +3,36 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>My first three.js app</title>
+	<title>Minecraft Cape</title>
 </head>
 
 <body>
-	<script type="module" src="./scripts/OrbitControls.js"></script>
-	<!-- <script type="module" src="./three.js-master/examples/jsm/controls/OrbitControls.js"></script> -->
-	
-	<script src="./scripts/three.js"></script>
-	<script src="./scripts/main.js" type="module"></script>
-	<!-- <script src="./scripts/jquery-1.10.2.js"></script> -->
-	<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-	</script> -->
-	<script src="./scripts/jquery.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+
+	<script src="./scripts/MCapeMain.js" type="module"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css">
+	</link>
 	</script>
-	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
-		integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
-	</script> -->
-	<script src="./scripts/bootstrap.min.js"></script>
-	</script>
-	<link rel="stylesheet" href="./scripts/cropper.css">
-	<link rel="stylesheet" href="./scripts/main.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-		integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/2.0.0-alpha.2/cropper.min.css">
 
 
 	<div class="container">
-		<h1>Customize preview for Cropper</h1>
 		<div class="row" id="actions">
 
 			<div class="col-md-4 docs-buttons">
 				<div class="docs-data">
 					<label for="customRange2" class="form-label">Example range</label>
-					<input type="range" id='resolutionFactorBar' class="form-range" min="1" max="100" value="50">
+					<input type="range" id='resolutionFactorBar' class="form-range" min="1" max="50" value="10">
 					<div class="input-group input-group-sm">
 						<span class="input-group-prepend">
 							<label class="input-group-text">目标分辨率</label>
 							<label class="input-group-text">(10,16)*</label>
 						</span>
-						<input type="number" class="form-control" id="resolutionFactor" value="50" placeholder="x">
+						<input type="number" class="form-control" id="resolutionFactor" value="10" placeholder="x">
 						<span class="input-group-append">
 							<span class="input-group-text">px</span>
 						</span>
@@ -58,9 +46,6 @@
 							reset
 						</span>
 					</button>
-
-				</div>
-				<div class="btn-group">
 					<button type="button" class="btn btn-primary" data-method="rotate" data-option="-1"
 						title="Rotate Left">
 						<span class="docs-tooltip" data-toggle="tooltip" title=""
@@ -136,7 +121,11 @@
 			</div>
 		</div>
 		<input type="file" id="imageUpload"><br />
-		<div id="previewCanvas"></div>
+		<button type="button" id="imagePreview" class="btn btn-primary" data-method="preview" title="Preview">
+			<span class="docs-tooltip" data-toggle="tooltip" title="preview image">
+				preview
+			</span>
+		</button>
 		<button type="button" id="imageDownload" class="btn btn-primary" data-method="download" title="Download">
 			<span class="docs-tooltip" data-toggle="tooltip" title="download image">
 				download
@@ -149,6 +138,9 @@
 			<div class="col-md-6">
 				<canvas id='3dCanvas'></canvas>
 			</div>
+		</div>
+		<div class="row">
+			<div id="previewCanvas"></div>
 		</div>
 	</div>
 
