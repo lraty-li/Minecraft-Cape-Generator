@@ -1,6 +1,9 @@
 # Minecraft-Cape-Generator
+
 A bootstrap page to generate minecraft cape texture img.
 
-using cropper js
+using cropperjs,treejs
 
-[try](https://lraty-li.github.io/Minecraft-Cape-Generator/)
+[demo](https://lraty-li.github.io/Minecraft-Cape-Generator/)
+
+[大佬版本](https://github.com/Ls-Jan/PyQt_MCCloakMaker)
