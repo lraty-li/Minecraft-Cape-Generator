@@ -2,8 +2,9 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
 	<title>Minecraft Cape</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -20,12 +21,35 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/2.0.0-alpha.2/cropper.min.css">
 
 
-	<div class="container">
-		<div class="row" id="actions">
+	<div class="container-fluid">
 
-			<div class="col-md-4 docs-buttons">
+		<div class="row">
+			<div class="img-container col-md-6">
+				<img id="image" src="" style="display: block; height:50vh">
+			</div>
+			<div class="col-md-6">
+				<canvas id='3dCanvas'></canvas>
+			</div>
+		</div>
+		<div class="row" id="actions">
+			<div class="col-md-3">
+
+				<input type="file" id="imageUpload">
+				<button type="button" id="imagePreview" class="btn btn-primary" data-method="preview" title="Preview">
+					<span class="docs-tooltip" data-toggle="tooltip" title="preview image">
+						生成预览图
+					</span>
+				</button>
+				<button type="button" id="imageDownload" class="btn btn-primary" data-method="download"
+					title="Download">
+					<span class="docs-tooltip" data-toggle="tooltip" title="download image">
+						生成并下载
+					</span>
+				</button>
+			</div>
+			<div class="col-md-3 docs-buttons">
 				<div class="docs-data">
-					<label for="customRange2" class="form-label">Example range</label>
+					<label for="customRange2" class="form-label">分辨率</label>
 					<input type="range" id='resolutionFactorBar' class="form-range" min="1" max="50" value="10">
 					<div class="input-group input-group-sm">
 						<span class="input-group-prepend">
@@ -43,106 +67,93 @@
 				<div class="btn-group">
 					<button type="button" class="btn btn-primary" data-method="reset" title="Reset">
 						<span class="docs-tooltip" data-toggle="tooltip" title="cropper.reset()">
-							reset
+							重置
 						</span>
 					</button>
 					<button type="button" class="btn btn-primary" data-method="rotate" data-option="-1"
 						title="Rotate Left">
 						<span class="docs-tooltip" data-toggle="tooltip" title=""
 							data-original-title="cropper.rotate(-1)">
-							counterclockwise </span>
+							逆时针旋转 </span>
 					</button>
 					<button type="button" class="btn btn-primary" data-method="rotate" data-option="1"
 						title="Rotate Right">
 						<span class="docs-tooltip" data-toggle="tooltip" title=""
 							data-original-title="cropper.rotate(1)">
-							Clockwise
+							顺时针旋转
 						</span>
 					</button>
 				</div>
 			</div>
-			<div class="row-md-3 docs-toggles">
-				<div class="btn-group d-flex flex-nowrap" data-toggle="buttons">
-					<label class="btn btn-primary">
-						<input type="radio" name="updatingFaceIndex" value="0">
-						0
-					</label>
-					<label class="btn btn-primary">
-						<input type="radio" name="updatingFaceIndex" value="1">
-						1
-					</label>
-					<label class="btn btn-primary">
-						<input type="radio" name="updatingFaceIndex" value="2">
-						披风顶部
-					</label>
-					<label class="btn btn-primary">
-						<input type="radio" name="updatingFaceIndex" value="3">
-						披风底部
-					</label>
-					<label class="btn btn-primary">
-						<input type="radio" name="updatingFaceIndex" value="4">
-						披风外侧
-					</label>
-					<label class="btn btn-primary">
-						<input type="radio" name="updatingFaceIndex" value="5">
-						披风内侧
-					</label>
-				</div>
-				<div class="btn-group d-flex flex-nowrap" data-toggle="buttons">
-					<label class="btn btn-primary">
-						<input type="radio" id="aspectRatio1" name="aspectRatio" value="0.625">
-						<span class="docs-tooltip" data-toggle="tooltip" title=""
-							data-original-title="aspectRatio: 10 / 16">
-							10:16
-						</span>
-					</label>
-					<label class="btn btn-primary">
-						<input type="radio" id="aspectRatio2" name="aspectRatio" value="7">
-						<span class="docs-tooltip" data-toggle="tooltip" title=""
-							data-original-title="aspectRatio: 7 / 1">
-							7:1
-						</span>
-					</label>
-					<label class="btn btn-primary">
-						<input type="radio" id="aspectRatio3" name="aspectRatio" value="0.0666666666667">
-						<span class="docs-tooltip" data-toggle="tooltip" title=""
-							data-original-title="aspectRatio: 1 / 15">
-							1:15
-						</span>
-					</label>
-					<label class="btn btn-primary">
-						<input type="radio" id="aspectRatio4" name="aspectRatio" value="NaN">
-						<span class="docs-tooltip" data-toggle="tooltip" title=""
-							data-original-title="aspectRatio: NaN">
-							Free
-						</span>
-					</label>
-				</div>
-			</div>
-		</div>
-		<input type="file" id="imageUpload"><br />
-		<button type="button" id="imagePreview" class="btn btn-primary" data-method="preview" title="Preview">
-			<span class="docs-tooltip" data-toggle="tooltip" title="preview image">
-				preview
-			</span>
-		</button>
-		<button type="button" id="imageDownload" class="btn btn-primary" data-method="download" title="Download">
-			<span class="docs-tooltip" data-toggle="tooltip" title="download image">
-				download
-			</span>
-		</button>
-		<div class="row">
-			<div class="img-container col-md-6">
-				<img id="image" src="">
-			</div>
 			<div class="col-md-6">
-				<canvas id='3dCanvas'></canvas>
+
+				<div class="row-md-3 docs-toggles">
+					<div class="btn-group d-flex flex-nowrap" data-toggle="buttons">
+						<label class="btn btn-primary">
+							<input type="radio" name="updatingFaceIndex" value="0">
+							右侧
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="updatingFaceIndex" value="1">
+							左侧
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="updatingFaceIndex" value="2">
+							披风顶部
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="updatingFaceIndex" value="3">
+							披风底部
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" checked="true" name="updatingFaceIndex" value="4">
+							披风外侧
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="updatingFaceIndex" value="5">
+							披风内侧
+						</label>
+					</div>
+					<div class="btn-group d-flex flex-nowrap" data-toggle="buttons">
+						<label class="btn btn-primary">
+							<input type="radio" id="aspectRatio1" name="aspectRatio" value="0.625">
+							<span class="docs-tooltip" data-toggle="tooltip" title=""
+								data-original-title="aspectRatio: 10 / 16">
+								10:16
+							</span>
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" id="aspectRatio2" name="aspectRatio" value="7">
+							<span class="docs-tooltip" data-toggle="tooltip" title=""
+								data-original-title="aspectRatio: 7 / 1">
+								7:1
+							</span>
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" id="aspectRatio3" name="aspectRatio" value="0.0666666666667">
+							<span class="docs-tooltip" data-toggle="tooltip" title=""
+								data-original-title="aspectRatio: 1 / 15">
+								1:15
+							</span>
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" id="aspectRatio4" name="aspectRatio" value="NaN">
+							<span class="docs-tooltip" data-toggle="tooltip" title=""
+								data-original-title="aspectRatio: NaN">
+								自由比例
+							</span>
+						</label>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div id="previewCanvas"></div>
+		<div>
+
+
+			<div class="row">
+				<div id="previewCanvas"></div>
+			</div>
 		</div>
-	</div>
 
 </body>
 

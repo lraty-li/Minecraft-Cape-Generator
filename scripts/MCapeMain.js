@@ -232,6 +232,10 @@ document.getElementById("imageDownload").onclick = function () {
 }
 document.getElementById("imagePreview").onclick = function () {
     buildTargetImage();
+    window.scrollTo({
+        top: window.innerHeight,
+        behavior: "smooth"
+    })
 }
 
 var actions = document.getElementById('actions');
@@ -480,10 +484,11 @@ window.addEventListener('resize', onWindowResize);
 
 function onWindowResize() {
 
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = (window.innerWidth * 2) / (window.innerHeight*1.25);
     camera.updateProjectionMatrix();
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    console.log(window.innerWidth, window.innerHeight)
+    renderer.setSize(window.innerWidth* 0.8, window.innerHeight * 0.5);
 
 }
 
